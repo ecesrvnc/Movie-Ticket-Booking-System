@@ -1,52 +1,49 @@
 # Movie-Ticket-Booking-System
-This project was developed as a group assignment for the CMPE341 - Database Design and Management course at Atılım University. It focuses on the design, analysis, and implementation of a database system for managing cinema operations, including movie schedules, seat availability, and customer reservations.
 
-Project Overview
-The system aims to replace manual or inefficient cinema management processes with a well-structured database-driven solution. It allows users to view movies, check showtimes, and reserve specific seats while providing administrators with tools to manage theater data and track sales.
+# Project Overview 
+This project presents a comprehensive database management system designed to automate movie ticket reservations and cinema operations. Developed for the CMPE341 course at Atılım University, the system addresses real-world challenges such as data redundancy, seat reservation conflicts, and inefficient scheduling.
 
-Tech Stack
-Database: Oracle SQL 
+# Database Architecture
+The system architecture is built upon a rigorous design process, transitioning from a conceptual EER model to a normalized relational schema.
 
-Interface: Oracle APEX 
+# 1. Conceptual Design (EER Modeling)
+The conceptual model identifies seven core entities that represent the full transaction cycle of a cinema:
 
-Design Tools: ER/EER Modeling 
+Customer: Stores user identification and contact information.
 
-Database Design
-The system consists of seven primary entities:
+Movie: Contains film metadata including title, genre, and duration.
 
-Movie: Stores titles, genres, and durations.
+Showtime: Manages the scheduling of movies in specific halls and times.
 
-Customer: Manages user accounts and contact details.
+Hall: Defines the physical screening rooms and their capacities.
 
-CinemaHall: Represents screening rooms and their capacities.
+Seat: Tracks individual seat availability for each hall.
 
-Seat: Individual seat tracking for each hall.
+Reservation: Acts as the central entity linking customers, showtimes, and seats.
 
-Showtime: Links movies to halls at specific dates/times.
+Payment: Records financial transactions linked to specific reservations.
 
-Reservation: Unites customers, showtimes, and seats.
+# 2. Logical Design and Normalization
+The ER diagram was mapped to a relational model to ensure data integrity:
 
-Payment: Tracks financial transactions for each booking.
+Integrity Constraints: Primary and foreign keys are explicitly defined to maintain referential integrity.
 
-Integrity Features
-Unique Constraints: Prevents double-booking by ensuring a specific (ShowtimeID, SeatID) combination can only be reserved once.
+Conflict Prevention: A unique constraint is implemented on the (ShowtimeID, SeatID) pair within the Reservation table to prevent double-booking.
 
-Referential Integrity: Enforced through foreign keys to maintain consistency across tables.
+Relational Chain: Every reservation is systematically linked to a payment record, facilitating a seamless data flow.
 
-SQL Examples
-The project includes complex queries to validate the design, such as:
+# Technical Implementation
+RDBMS: Oracle SQL.
 
-Multi-table Joins: Combining customer, movie, seat, and payment data.
+Interface: Oracle APEX (Application Express).
 
-Aggregate Queries: Calculating total revenue generated per film.
+Key Operations: Support for dynamic seat checking, automated reservation status updates, and administrative reporting.
 
-Subqueries: Filtering customers who have completed successful transactions.
+# SQL Validations
+The implementation includes advanced SQL queries to verify system functionality:
 
-User Interface
-The system features a web-based interface built with Oracle APEX, including:
+Complex Joins: Consolidating data across multiple tables for detailed reporting.
 
-Secure Login/Authentication for customers.
+Aggregation: Revenue analysis per movie using GROUP BY and ORDER BY clauses.
 
-Interactive Dashboards for managing movies and halls.
-
-Data Entry Forms for creating new reservations and processing payments.
+Subqueries: Identifying active customers based on successful payment transactions.
